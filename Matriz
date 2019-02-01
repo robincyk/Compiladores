@@ -1,0 +1,27 @@
+/* Estructura de la Matriz Proyecto Compiladores */
+
+#include<stdio.h>
+#include<string.h>
+
+
+int main() {
+	char matriz[10][50] = {"Palabra Uno1",
+							"Palabra Dos1",
+							"Palabra Tres3",
+							"Palabra Cuatro4",
+							"Palabra Cinco5",
+							"Palabra Seis6",
+							"Palabra Siete7",
+							"Palabra Ocho8",
+							"Palabra Nueve9",
+							"Palabra Diez10" };
+	
+	//Creamos el bucle que leera la matriz
+	for(int i=0; i<10; i++) {
+		printf(" Palabras contenidas en la Matriz: %s", matriz[i]);
+		printf("\n");
+	}
+	
+	
+	return 0;
+}
