@@ -1,0 +1,60 @@
+/* Estructura de la Matriz del Proyecto Compiladores */
+
+#include<stdio.h>
+#include<string.h>
+	char matriz[100][17]= {
+		"192.168.0.1",
+		"192.168.0.2",
+		"192.168.0.3",
+		"192.168.0.4",
+	};
+	int i=4;
+	
+	int todo() {
+		//Creamos el bucle que leera toda la matriz
+		for(i=0; i<4; i++) {
+			printf(" Palabras contenidas en la Matriz: %s", matriz[i]);
+			printf("\n");
+		}
+		return 0;
+	}
+	
+	int guardar(int i) {
+		char g;
+		//Creamos el bucle que escribirá la matriz
+		do {
+			printf("\n Escribe la nueva IP a guardar: ");
+			gets(matriz[i]);
+			i++;
+			printf("\n ¿Deseas guardar una nueva IP? Si/No: ");
+			scanf("%c", &g); //lee la respuesta del usuario
+		} while(g=='S' || g=='s');
+		
+		return 0;
+	}
+
+int main() {
+	char resp;
+
+	printf(" Las siguientes, son funciones válidas en el programa, utilizalas. \n");
+	printf("       Guardar - Guarda una nueva IP a la biblioteca \n");
+	printf("       Borrar - Borra una IP existente de tu biblioteca \n");
+	printf("       Actualizar - Actualiza una IP existente de la biblioteca \n");
+	printf("       Todo - Imprime todas las IP's guardas en la biblioteca \n\n");
+	
+	printf(" Qué deseas hacer: ");
+	scanf("%s", &resp);
+		switch(resp) {
+			case 'G': guardar(i);
+			case 'g': guardar(i);
+			case 'B':
+			case 'b':
+			case 'A':
+			case 'a':
+			case 'T': todo();
+			case 't': todo();
+		}
+
+		
+	return 0;
+}
