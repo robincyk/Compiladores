@@ -1,60 +1,178 @@
-/* Estructura de la Matriz del Proyecto Compiladores */
+/* Estructura de la Matriz Proyecto Compiladores */
 
 #include<stdio.h>
 #include<string.h>
-	char matriz[100][17]= {
+	char matriz[10][17]= {
 		"192.168.0.1",
 		"192.168.0.2",
 		"192.168.0.3",
 		"192.168.0.4",
 	};
-	int i=4;
+	char si[3][3]= {
+	"Si",
+	"SI",
+	"si"
+	};
+	int i=0;
+	char resp[3];
 	
 	int todo() {
+		printf("\n Direcciones almacenadas: \n");
 		//Creamos el bucle que leera toda la matriz
-		for(i=0; i<4; i++) {
-			printf(" Palabras contenidas en la Matriz: %s", matriz[i]);
-			printf("\n");
+		for(i=0; i<5; i++) {
+			printf("			%s\n", matriz[i]);
 		}
 		return 0;
 	}
 	
-	int guardar(int i) {
-		char g;
-		//Creamos el bucle que escribirá la matriz
-		do {
-			printf("\n Escribe la nueva IP a guardar: ");
-			gets(matriz[i]);
-			i++;
-			printf("\n ¿Deseas guardar una nueva IP? Si/No: ");
-			scanf("%c", &g); //lee la respuesta del usuario
-		} while(g=='S' || g=='s');
-		
+	int guardar(){
+		int iguardar=4;
+		printf("\n Escribe la nueva IP a guardar:");
+		gets(matriz[iguardar]);
+		printf(" La IP guardada fue: %s \n", matriz[iguardar]);
+		iguardar++;
+		char *r=si[0];
+		char *r2=si[1];
+		char *r4=si[2];
+		printf("\n ¿Deseas guardar una nueva IP? Si/No: ");
+		gets(resp);
+		char *r3=resp;
+		int a= strcmp(r,r3);
+		int b= strcmp(r2,r3);
+		int c= strcmp(r4,r3);
+		if (a==0 || b==0 || c==0) guardar();
 		return 0;
 	}
+	
+	int borrar() {
+		char ipvacia[]="0.0.0.0";
+		char *p=ipvacia;
+		
+		//Creamos el bucle que borrara en la matriz
+		char ipborrar[17];
+		char *r5;
+		printf("\n Escribe la dirección que deseas borrar: ");
+		gets(ipborrar);
+		char *r0=ipborrar;
+		//Buscamos si la dirección existe
+		for(i=0; i<=4; i++){
+			r5=matriz[i];
+			int d= strcmp(r0,r5);
+			if (d==0) {
+				printf(" Borrando la dirección... \n");
+				printf(" Direccion %s borrada con exito. \n", r5);
+				strcpy(r5,p);
+				break;
+			}
+		}
+		if (i==5) printf(" No existe la IP \n");
+		printf("\n ¿Deseas borrar otra IP? Si/No: ");
+		gets(resp);
+		char *r=si[0];
+		char *r2=si[1];
+		char *r4=si[2];
+		char *r3=resp;
+		int a= strcmp(r,r3);
+		int b= strcmp(r2,r3);
+		int c= strcmp(r4,r3);
+		if (a==0 || b==0 || c==0) borrar();			
+		
+		return 0;
+	}	
 
+	int actualizar() {
+		//Creamos el bucle que actualizara una dirección
+		char resp2[17];
+		char *r5, *r0;
+		printf("\n Escribe la dirección que deseas actualizar: ");
+		gets(resp2);
+		r0=resp2;
+		//Buscamos si la dirección existe
+		for(i=0; i<=4; i++){
+			r5=matriz[i];
+			int d= strcmp(r0,r5); //Compara linea por linea
+			if (d==0) {
+				printf(" Encontramos la dirección: %s\n",matriz[i]);
+				printf(" Escribe la nueva dirección: ");
+				gets(resp2);
+				char *r1=resp2;
+				stpcpy(r5,r1);
+				printf(" Guardamos la nueva dirección: %s \n", matriz[i]);
+				break;
+			} 
+		}
+		if(i==5) printf(" No existe la IP \n");
+		printf("\n ¿Deseas actualizar otra IP? Si/No: ");
+		gets(resp);
+		char *r=si[0];
+		char *r2=si[1];
+		char *r4=si[2];
+		char *r3=resp;
+		int a= strcmp(r,r3);
+		int b= strcmp(r2,r3);
+		int c= strcmp(r4,r3);
+		if (a==0 || b==0 || c==0) actualizar();				
+		
+		return 0;
+	}	
+	
 int main() {
-	char resp;
+	char comand[10][11]= {
+		"Guardar",
+		"guardar",
+		"Borrar",
+		"borrar",
+		"Actualizar",
+		"actualizar",
+		"Todo",
+		"todo",
+		"Salir",
+		"salir",
+	};
+	char sol[11];
+	int cont, salida=0;
 
-	printf(" Las siguientes, son funciones válidas en el programa, utilizalas. \n");
-	printf("       Guardar - Guarda una nueva IP a la biblioteca \n");
-	printf("       Borrar - Borra una IP existente de tu biblioteca \n");
-	printf("       Actualizar - Actualiza una IP existente de la biblioteca \n");
-	printf("       Todo - Imprime todas las IP's guardas en la biblioteca \n\n");
+	do {
+		printf("\n\n 	Las siguientes, son funciones válidas en el programa, utilizalas. \n");
+		printf("			%s - Guarda una nueva IP a la biblioteca. \n", comand[0]);
+		printf("			%s - Borra una IP existente de la biblioteca. \n", comand[2]);
+		printf("			%s - Actualiza una IP existente de la biblioteca. \n", comand[4]);
+		printf("			%s - Imprime todas las IP's guardas en la biblioteca. \n", comand[6]);
+		printf("			%s - Finaliza el Programa. \n\n", comand[8]);
 	
-	printf(" Qué deseas hacer: ");
-	scanf("%s", &resp);
-		switch(resp) {
-			case 'G': guardar(i);
-			case 'g': guardar(i);
-			case 'B':
-			case 'b':
-			case 'A':
-			case 'a':
-			case 'T': todo();
-			case 't': todo();
+		printf("	Qué deseas hacer: ");
+		gets(sol);
+		//Comparamos la solicitud con la lista de comandos
+		for (cont=0; cont<=9; cont++) {
+			char *comando=comand[cont];
+			char *solicitud=sol;
+			int comp= strcmp(comando,solicitud);
+			if (comp==0) { //Verifica que exista el comando
+				if (cont==0||cont==1) { //guardar
+					guardar(); 
+					break;
+				}
+				if (cont==2||cont==3) { //borrar
+					borrar(); 
+					break;
+				}
+				if (cont==4||cont==5) { //actualizar
+					actualizar(); 
+					break;
+				}
+				if (cont==6||cont==7) { //todo
+					todo();		
+					break;
+				}
+				if (cont==8||cont==9) {	//salir
+					salida=1; 
+					break;
+				}
+			} 
+			
 		}
-
-		
+		if (cont==10) printf(" Comando inexistente. Prueba otra vez.\n");
+	} while(salida != 1);
+	
 	return 0;
 }
